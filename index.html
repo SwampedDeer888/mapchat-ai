@@ -150,7 +150,7 @@ async function askClaude(msg){
   const sys=`You are a maps AI. Reply ONLY with valid JSON (no markdown):
 {"reply":"short friendly message","action":"search_places|directions|multi_stop|geocode|none","query":"place search query","origin":"origin","destination":"destination","waypoints":["stop1"],"travel_mode":"DRIVING|WALKING|TRANSIT|BICYCLING","location":"place to centre map","zoom":14,"info":"one-line info bar summary"}
 Rules: search_places for POI queries; directions for A→B; multi_stop for trips; geocode to pan map. Default travel_mode=DRIVING. "near me"=Bengaluru. Always include reply and info.`;
-  const r=await fetch("https://api.anthropic.com/v1/messages",{
+  const r=await fetch("/api/chat",{
     method:"POST",
     headers:{"Content-Type":"application/json","x-api-key":CLAUDE_KEY,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},
     body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:600,system:sys,messages:[{role:"user",content:msg}]})
